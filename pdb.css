@@ -1,3 +1,14 @@
+
+@font-face {
+    font-family: pokemon_solid;
+    src: url(resources/Pokemon\ Solid.ttf);
+}
+
+@font-face {
+    font-family: pokemon_hollow;
+    src: url(resources/Pokemon\ Hollow.ttf);
+}
+
 html{
     background-image: url('resources/platinum_wallpaper.jpg');
     -webkit-background-size: cover;
@@ -5,6 +16,14 @@ html{
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+label{
+    font-family: pokemon_hollow;
+    color: yellow;
+    -webkit-text-stroke-color: blue;
+    -webkit-text-stroke-width: 10%;
+    font-size: large;
 }
 
 ul{
@@ -38,6 +57,8 @@ li a:hover{
 
 h1, h2, p{
     text-align: center;
+    font-family: pokemon_hollow;
+    color: yellow;
 }
 
 img{
@@ -51,3 +72,4 @@ table, th, td{
     margin-right: auto;
     margin-left: auto;
 }
+
