@@ -8,9 +8,22 @@
             <li><a href = "pokemon.html">Pokemon</a></li>
             <li><a href = "moves.html">Moves</a></li>
         </ul>
+        <h2>Search Pokemon</h2>
         <form>
-            <input type="search">
-            <input type="text">
+            <label for="PokemonNumber">Pokemon Number</label><br>
+            <input type="number" id="PokemonNumber" name="PokemonNumber"
+                   min="1" max="210" size="3" pattern="[0-9]{1,3}"><br>
+            <label for="PokemonName">Pokemon Name</label><br>
+            <input type="text" id="PokemonName" name="PokemonName"
+                   size="50" pattern="[A-Za-z-.2 ]{1,50}"><br>
+            <label for="PokemonType">Pokemon Type</label><br>
+            <input type="text" id="PokemonType" name="PokemonType"
+                   size="50" pattern="[A-Za-z]{1,50}"><br>
+            <label for="PokemonLocation">Pokemon Location</label><br>
+            <input type="text" id="PokemonLocation" name="PokemonLocation"
+                   size="50" pattern="[A-Za-z0-9 .]{1,50}"><br>
+            <br>
+            <input type="submit" value="Search"><br>
         </form>
         <p>
             
