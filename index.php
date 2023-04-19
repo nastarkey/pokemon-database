@@ -1,12 +1,9 @@
-<?php
 
-include('authenticate.php')
-
- ?>
 <!DOCTYPE html>
 <link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
     <body>
+        <img src="resources/pokeball.png" transparent>
         <ul>
             <li><a href = "index.php">Home</a></li>
             <li><a href = "party.html">Party</a></li>
