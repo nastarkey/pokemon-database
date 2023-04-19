@@ -55,9 +55,16 @@ li a:hover{
     background-color: #111111;
 }
 
-h1, h2, p{
+h1, h2{
     text-align: center;
     font-family: pokemon_hollow;
+    color: yellow;
+}
+
+p{
+    text-align: center;
+    font-family: pokemon_solid;
+    font-size: x-large;
     color: yellow;
 }
 
@@ -73,3 +80,10 @@ table, th, td{
     margin-left: auto;
 }
 
+.aboutText{
+    background-color: Silver;
+    border: 2px solid Black;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
