@@ -26,6 +26,18 @@ label{
     font-size: large;
 }
 
+.login{
+    display: table;
+    position: absolute;
+    top: 0;
+    margin: auto;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    width: 100%;
+}
+
 ul{
     list-style-type: none;
     justify-content: center;
@@ -58,7 +70,7 @@ li a:hover{
 h1, h2, p{
     text-align: center;
     font-family: pokemon_hollow;
-    color: yellow;
+    color: rgb(163, 163, 15);
 }
 
 img{

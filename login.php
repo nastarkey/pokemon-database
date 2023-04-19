@@ -41,6 +41,7 @@ if (isset($_SESSION["username"])) { // authenticated
 
  ?>
 <!DOCTYPE html>
+<link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
   <body>
     <?php
@@ -48,6 +49,7 @@ if (isset($_SESSION["username"])) { // authenticated
         echo "Invalid username or password.";
       }
      ?>
+     <div class="login">
     <form action="<?php echo $_SERVER["PHP_SELF"].
                              "?".$_SERVER["QUERY_STRING"]; ?>"
           method="post">
@@ -60,5 +62,6 @@ if (isset($_SESSION["username"])) { // authenticated
 
       <input type="submit" value="Log in" />
     </form>
+    </div>
   </body>
 </html>
