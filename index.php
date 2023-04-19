@@ -3,15 +3,30 @@
 <link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
     <body>
-        <img src="resources/pokeball.png" transparent>
         <ul>
             <li><a href = "index.php">Home</a></li>
             <li><a href = "party.html">Party</a></li>
             <li><a href = "pokemon.html">Pokemon</a></li>
             <li><a href = "moves.html">Moves</a></li>
         </ul>
-        <p>
+        <div class="place1">
             
-        </p>
+        </div>
+        <div class="place2">
+            
+        </div>
+        <div class="place3">
+            
+        </div>
+        <div class="place4">
+            
+        </div>
+        <div class="place5">
+            
+        </div>
+        <div class="place6">
+            
+        </div>
+
     </body>
 </html>
