@@ -1,4 +1,5 @@
 <?php
+include 'insert-user.php';
 session_start(); // start (or resume) session
 
 // create database connection ($connection)

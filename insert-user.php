@@ -2,10 +2,14 @@
 
 $server = "localhost";
 $username = "student";
-$password = "password";
+$password = "CompSci364";
 
-$connection = new mysqli($server, $username, $password, "student")
-    or die("Could not connect");
+$connection = new mysqli($server, $username, $password, "student");
+
+if ($connection->connect_errno) {
+    echo "Failed to connect to MySQL: " . $connection->connect_error;
+    exit();
+}
 
 $sql = <<<QUERIES
 DROP TABLE IF EXISTS Users;
@@ -15,10 +19,11 @@ CREATE TABLE Users (
     PRIMARY KEY (username)
 );
 
-INSERT INTO Example(username, password_hash) VALUES
-('student', md5('password'));
+INSERT INTO Users(username, password_hash) VALUES ('student', md5('password'));
 
 QUERIES;
 
-$connection->multi_query($sql)
-    or die("OOps");
+if (!$connection->multi_query($sql)) {
+    echo "Error: " . $connection->error;
+}
+
