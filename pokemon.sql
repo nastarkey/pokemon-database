@@ -12,14 +12,14 @@ CREATE TABLE Trainer(
 );
 
 CREATE TABLE Pokemon(
-    pokedex_number INTEGER
-    pokemon_name CHARACTER VARYING(32)
-    weight NUMERIC(16,2)
-    height NUMERIC(16,2)
+    pokedex_number INTEGER,
+    pokemon_name CHARACTER VARYING(32),
+    weight DECIMAL,
+    height DECIMAL,
     ability CHARACTER VARYING(32),
-    trainer_id INTEGER
-    PRIMARY KEY(pokedex_number)
-    FOREIGN KEY(trainer_id) REFERENCES (Trainer)
+    trainer_id INTEGER,
+    PRIMARY KEY(pokedex_number),
+    FOREIGN KEY(trainer_id) REFERENCES (Trainer),
     ON UPDATE CASCADE ON DELETE RESTRICT;
 );
 
