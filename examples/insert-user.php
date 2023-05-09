@@ -12,15 +12,7 @@ if ($connection->connect_errno) {
 }
 
 $sql = <<<QUERIES
-DROP TABLE IF EXISTS Users;
-CREATE TABLE Users (
-    username CHARACTER VARYING(32),
-    password_hash CHARACTER VARYING(255) NOT NULL,
-    PRIMARY KEY (username)
-);
-
 INSERT INTO Users(username, password_hash) VALUES ('student', md5('password'));
-
 QUERIES;
 
 if (!$connection->multi_query($sql)) {
