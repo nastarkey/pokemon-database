@@ -19,8 +19,8 @@ CREATE TABLE Pokemon(
     ability CHARACTER VARYING(32),
     trainer_id INTEGER,
     PRIMARY KEY(pokedex_number),
-    FOREIGN KEY(trainer_id) REFERENCES (Trainer),
-    ON UPDATE CASCADE ON DELETE RESTRICT;
+    FOREIGN KEY(trainer_id) REFERENCES Trainer (trainer_id)
+    ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Pokemon (pokedex_number,pokemon_name,weight,height, ability) VALUES
@@ -237,8 +237,7 @@ INSERT INTO Pokemon (pokedex_number,pokemon_name,weight,height, ability) VALUES
 
 CREATE TABLE Type(
     type_name CHARACTER VARYING(32),
-    PRIMARY KEY(type_name),
-    ON UPDATE NO ACTION ON DELETE NO ACTION;
+    PRIMARY KEY(type_name)
 );
 
 INSERT INTO Type (type_name) VALUES
@@ -247,7 +246,6 @@ INSERT INTO Type (type_name) VALUES
 ('Grass'),
 ('Water'),
 ('Electric'),
-('Grass'),
 ('Ice'),
 ('Fighting'),
 ('Poison'),
@@ -261,12 +259,24 @@ INSERT INTO Type (type_name) VALUES
 ('Dark'),
 ('Steel');
 
+CREATE TABLE Region(
+    region_name CHARACTER VARYING(32),
+    generation INTEGER,
+    PRIMARY KEY(region_name)
+);
+
+INSERT INTO Region (region_name, generation) VALUES
+('Sinnoh', 4);
+
+
+
+
 CREATE TABLE Location(
     location_name CHARACTER VARYING(32),
     region_name CHARACTER VARYING(32),
     PRIMARY KEY(location_name),
-    FOREIGN KEY(region_name) REFERENCES (Region),
-    ON UPDATE CASCADE ON DELETE RESTRICT;
+    FOREIGN KEY(region_name) REFERENCES Region (region_name)
+    ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Location (location_name, region_name) VALUES
@@ -300,13 +310,11 @@ INSERT INTO Location (location_name, region_name) VALUES
 ('Route 228', 'Sinnoh'),
 ('Route 229', 'Sinnoh'),
 ('Route 230', 'Sinnoh'),
-('Acuity Lakefront', 'Sinnoh'),
 ('Canalave City', 'Sinnoh'),
 ('Celestic Town', 'Sinnoh'),
 ('Distortion World', 'Sinnoh'),
 ('Eterna City', 'Sinnoh'),
 ('Eterna Forest', 'Sinnoh'),
-('Floaroma Meadow', 'Sinnoh'),
 ('Fuego Ironworks', 'Sinnoh'),
 ('Great Marsh', 'Sinnoh'),
 ('Honey Trees', 'Sinnoh'),
@@ -327,7 +335,6 @@ INSERT INTO Location (location_name, region_name) VALUES
 ('Roaming Sinnoh', 'Sinnoh'),
 ('Ruin Maniac Tunnel', 'Sinnoh'),
 ('Sendoff Spring', 'Sinnoh'),
-('Snowpoint City', 'Sinnoh'),
 ('Snowpoint Temple', 'Sinnoh'),
 ('Solaceon Ruins', 'Sinnoh'),
 ('Spear Pillar', 'Sinnoh'),
@@ -342,27 +349,18 @@ INSERT INTO Location (location_name, region_name) VALUES
 ('Wayward Cave', 'Sinnoh'),
 ('All Water Areas', 'Sinnoh');
 
-CREATE TABLE Region(
-    region_name CHARACTER VARYING(32),
-    generation INTEGER,
-    PRIMARY KEY(region_name);
-);
-
-INSERT INTO Region (region_name, generation) VALUES
-('Sinnoh', 4);
 
 CREATE TABLE Evolves(
     pokedex_number1 INTEGER,
     pokedex_number2 INTEGER,
-    condition CHARACTER VARYING(255),
-    PRIMARY KEY(pokedex_number1),
-    FOREIGN KEY(pokedex_number1), REFERENCES(Pokemon),
+    evolve_condition CHARACTER VARYING(255) NOT NULL,
+    FOREIGN KEY (pokedex_number1) REFERENCES Pokemon (pokedex_number)
     ON UPDATE CASCADE ON DELETE RESTRICT,
-    FOREIGN KEY(pokedex_number2), REFERENCES(Pokemon),
-    ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (pokedex_number2) REFERENCES Pokemon (pokedex_number)
+    ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
-INSERT INTO Evolves (pokedex_number1, pokedex_number2, condition) VALUES
+INSERT INTO Evolves (pokedex_number1, pokedex_number2, evolve_condition) VALUES
 (1, 2, 'Level 18'),
 (2, 3, 'Level 32'),
 (4, 5, 'Level 14'),
@@ -480,14 +478,15 @@ INSERT INTO Evolves (pokedex_number1, pokedex_number2, condition) VALUES
 (206, 208, 'Dawn Stone female only');
 
 CREATE TABLE Pokemon_Location (
+	location_id INTEGER NOT NULL AUTO_INCREMENT,
 	pokedex_number INTEGER,
 	location_name CHARACTER VARYING(255),
 	habitat CHARACTER VARYING(32),
-	PRIMARY KEY(pokedex_number),
-	FOREIGN KEY(pokedex_number), REFERENCES(Pokemon),
-    ON UPDATE NO ACTION ON DELETE NO ACTION,
-	FOREIGN KEY(location_name),
-	ON UPDATE NO ACTION ON DELETE NO ACTION;
+	PRIMARY KEY(location_id),
+	FOREIGN KEY(pokedex_number) REFERENCES Pokemon (pokedex_number)
+    ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(location_name) REFERENCES Location (location_name)
+	ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
@@ -568,7 +567,7 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (28, 'Wayward Cave', 'Cave'),
 (28, 'Lost Tower', 'Inside'),
 (28, 'Iron Island', 'Cave'),
-(28, 'Mt. Coronet', 'Cave')
+(28, 'Mt. Coronet', 'Cave'),
 (29, 'Route 227', 'Grass'),
 (29, 'Oreburgh Gate', 'Cave'),
 (29, 'Lost Tower', 'Inside'),
@@ -580,14 +579,13 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (29, 'Turnback Cave', 'Cave'),
 (31, 'Route 206', 'Grass'),
 (31, 'Route 207', 'Grass'),
-(31, 'Route 207', 'Grass'),
 (31, 'Route 210', 'Grass'),
 (31, 'Route 214', 'Grass'),
 (31, 'Oreburgh Gate', 'Cave'),
 (31, 'Oreburgh Mine', 'Cave'),
 (31, 'Wayward Cave', 'Cave'),
 (31, 'Iron Island', 'Cave'),
-(31, 'Ruin Maniac Cave', 'Cave'),
+(31, 'Ruin Maniac Tunnel', 'Cave'),
 (31, 'Mt. Coronet', 'Cave'),
 (32, 'Route 211', 'Grass'),
 (32, 'Route 214', 'Grass'),
@@ -696,7 +694,7 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (61, 'Route 205', 'Grass'),
 (61, 'Route 212', 'Grass'),
 (61, 'Route 213', 'Grass'),
-(61, 'Route 224', 'Grass')
+(61, 'Route 224', 'Grass'),
 (61, 'Pastoria City', 'Water'),
 (61, 'Canalave City', 'Water'),
 (61, 'Valley Windworks', 'Grass'),
@@ -844,9 +842,9 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (120, 'Iron Island', 'Water'),
 (121, 'Route 221', 'Grass'),
 (121, 'Lake Valor', 'Grass'),
-(122, 'Ruin Maniac Cave', 'Cave'),
+(122, 'Ruin Maniac Tunnel', 'Cave'),
 (123, 'Route 228', 'Grass'),
-(124, 'Trophy Garden'),
+(124, 'Trophy Garden', 'Grass'),
 (125, 'Route 212', 'Grass'),
 (125, 'Route 215', 'Grass'),
 (126, 'Victory Road', 'Water'),
@@ -880,7 +878,7 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (134, 'Route 221', 'Water'),
 (134, 'Canalave City', 'Water'),
 (134, 'Valley Windworks', 'Water'),
-(134, 'Fuego IronWorks', 'Water'),
+(134, 'Fuego Ironworks', 'Water'),
 (134, 'Iron Island', 'Water'),
 (135, 'Route 205', 'Water'),
 (135, 'Route 218', 'Water'),
@@ -889,7 +887,7 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (135, 'Route 221', 'Water'),
 (135, 'Canalave City', 'Water'),
 (135, 'Valley Windworks', 'Water'),
-(135, 'Fuego IronWorks', 'Water'),
+(135, 'Fuego Ironworks', 'Water'),
 (135, 'Iron Island', 'Water'),
 (136, 'Route 205', 'Water'),
 (136, 'Route 212', 'Water'),
@@ -978,17 +976,19 @@ INSERT INTO Pokemon_Location (pokedex_number, location_name, habitat) VALUES
 (206, 'Route 217', 'Grass'),
 (206, 'Lake Acuity', 'Grass'),
 (209, 'Mt. Coronet', 'Grass'),
-(210, 'Distortion World', 'Encounter'),
+(210, 'Distortion World', 'Encounter');
+
 
 CREATE TABLE Effectiveness(
-    type_name1 VARCHAR(32),
-    type_name2 VARCHAR(32),
-    effective VARCHAR(32),
-    PRIMARY KEY(type_name1),
-    FOREIGN KEY(type_name1) REFERENCES(Type),
+	effectiveness_id INTEGER NOT NULL AUTO_INCREMENT,
+    type_name1 CHARACTER VARYING(32),
+    type_name2 CHARACTER VARYING(32),
+    effective CHARACTER VARYING(32),
+    PRIMARY KEY(effectiveness_id),
+    FOREIGN KEY(type_name1) REFERENCES Type (type_name)
     ON UPDATE NO ACTION ON DELETE NO ACTION,
-    FOREIGN KEY(type_name2) REFERENCES(Type),
-    ON UPDATE NO ACTION ON DELETE NO ACTION;
+    FOREIGN KEY(type_name2) REFERENCES Type (type_name)
+    ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 INSERT INTO Effectiveness (type_name1, type_name2, effective) VALUES
@@ -1293,7 +1293,7 @@ CREATE TABLE Move(
 	Effect CHARACTER VARYING(255),
 	PRIMARY KEY(move_name),
 	FOREIGN KEY(Type_name) REFERENCES Type (Type_name)
-	ON UPDATE CASCADE ON DELETE RESTRICT;
+	ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Move (Move_name, Type_name, Category, Power_points, Power, Accuracy, Effect) VALUES
@@ -1304,13 +1304,13 @@ INSERT INTO Move (Move_name, Type_name, Category, Power_points, Power, Accuracy,
 ('Hammer Arm', 'Fighting', 'Physical', 10, 100, 90, NULL),
 ('Gryo Ball', 'Steel', 'Physical', 5, NULL, 100, NULL),
 ('Healing Wish', 'Psychic', 'Status', 10, NULL, NULL, 'Heal'),
-('Brine', 'Water', 'Special', 10, 65, 100, NULL)
+('Brine', 'Water', 'Special', 10, 65, 100, NULL),
 ('Natural Gift', 'Normal', 'Physical', 15, NULL, 100, NULL),
 ('Feint', 'Normal', 'Physical', 10, 30, 100, NULL),
 ('Pluck', 'Flying', 'Physical', 20, 60, 100, NULL),
 ('Tailwind', 'Flying', 'Status', 15, NULL, NULL, 'Increase Speed'),
 ('Accupressure', 'Normal', 'Status', 30, NULL, NULL, 'Sharply Increased A Random Stat'),
-('Metal Burst', 'Steel', 'Physical', 10, NULL, 100 NULL),
+('Metal Burst', 'Steel', 'Physical', 10, NULL, 100, NULL),
 ('U-Turn', 'Bug', 'Physical', 20, 70, 100, NULL),
 ('Close Combat', 'Fighting', 'Physical', 5, 120, 100, NULL),
 ('Payback', 'Dark', 'Physical', 10, 50, 100, NULL),
@@ -1418,27 +1418,64 @@ CREATE TABLE Learned_moves(
 	Move_name3 CHARACTER VARYING(32),
 	Move_name4 CHARACTER VARYING(32),
 	PRIMARY KEY(Pokedex_number),
-	FOREIGN KEY(Pokedex_number) REFERENCES Pokemon (Pokedex_number),
+	FOREIGN KEY(Pokedex_number) REFERENCES Pokemon (Pokedex_number)
 	ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY(Move_name1) REFERENCES Move (Move_name1),
+	FOREIGN KEY(Move_name1) REFERENCES Move (Move_name)
 	ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY(Move_name2) REFERENCES Move (Move_name2),
+	FOREIGN KEY(Move_name2) REFERENCES Move (Move_name)
 	ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY(Move_name3) REFERENCES Move (Move_name3),
+	FOREIGN KEY(Move_name3) REFERENCES Move (Move_name)
 	ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY(Move_name4) REFERENCES Move (Move_name4),
-	ON UPDATE CASCADE ON DELETE RESTRICT;
-)
+	FOREIGN KEY(Move_name4) REFERENCES Move (Move_name)
+	ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE Caught_Pokemon(
+	caught_id INTEGER NOT NULL AUTO_INCREMENT,
+	trainer_id INTEGER,
+	pokemon INTEGER,
+	PRIMARY KEY(caught_id),
+	FOREIGN KEY(pokemon) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(trainer_id) REFERENCES Trainer (trainer_id)
+	ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE Party(
+	trainer_id INTEGER,
+	pokemon1 INTEGER,
+	pokemon2 INTEGER,
+	pokemon3 INTEGER,
+	pokemon4 INTEGER,
+	pokemon5 INTEGER,
+	pokemon6 INTEGER,
+	PRIMARY KEY (trainer_id),
+	FOREIGN KEY(trainer_id) REFERENCES Trainer (trainer_id)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(pokemon1) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(pokemon2) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(pokemon3) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(pokemon4) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(pokemon5) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(pokemon6) REFERENCES Pokemon (Pokedex_number)
+	ON UPDATE CASCADE ON DELETE RESTRICT
+);
 
 
 CREATE TABLE Pokemon_Type(
-	Pokedex_number INTEGER,
+	pokemon_type_id INTEGER NOT NULL AUTO_INCREMENT,
+	pokedex_number INTEGER,
 	Type_name CHARACTER VARYING(32),
-	PRIMARY KEY(pokedex_number),
-	FOREIGN KEY(pokedex_number), REFERENCES Pokemon(pokedex_number),
+	PRIMARY KEY(pokemon_type_id),
+	FOREIGN KEY(pokedex_number) REFERENCES Pokemon(pokedex_number)
 	ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY(Type_name), REFERENCES Type(Type_name),
-	ON UPDATE CASCADE ON DELETE RESTRICT;
+	FOREIGN KEY(Type_name) REFERENCES Type(Type_name)
+	ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 INSERT INTO Pokemon_Type (Pokedex_number, Type_name) VALUES
