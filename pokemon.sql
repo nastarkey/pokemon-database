@@ -1284,19 +1284,19 @@ INSERT INTO Effectiveness (type_name1, type_name2, effective) VALUES
 
 
 CREATE TABLE Move(
-	Move_name CHARACTER VARYING(32),
-    Type_name CHARACTER VARYING(32),
-    Category CHARACTER VARYING(32),
-    Power_points INTEGER,
-    Power INTEGER,
-	Accuracy INTEGER,
-	Effect CHARACTER VARYING(255),
+	move_name CHARACTER VARYING(32),
+    type_name CHARACTER VARYING(32),
+    category CHARACTER VARYING(32),
+    power_points INTEGER,
+    power INTEGER,
+	accuracy INTEGER,
+	effect CHARACTER VARYING(255),
 	PRIMARY KEY(move_name),
-	FOREIGN KEY(Type_name) REFERENCES Type (Type_name)
+	FOREIGN KEY(Type_name) REFERENCES Type (Type_name),
 	ON UPDATE CASCADE ON DELETE RESTRICT;
 );
 
-INSERT INTO Move (Move_name, Type_name, Category, Power_points, Power, Accuracy, Effect) VALUES
+INSERT INTO Move (move_name, type_name, category, power_points, power, accuracy, effect) VALUES
 ('Roost', 'Flying', 'Status', 5, NULL, NULL, 'Heal'),
 ('Gravity', 'Psychic', 'Status', 5, NULL, NULL, 'Increase Accuracy'),
 ('Miracle Eye', 'Psychic', 'Status', 40, NULL, NULL, 'Ignore Accuracy'),
@@ -1411,20 +1411,17 @@ INSERT INTO Move (Move_name, Type_name, Category, Power_points, Power, Accuracy,
 ('Ominous Wind', 'Ghost', 'Special', 5, 60, 100, NULL),
 ('Shadow Force', 'Ghost', 'Physical', 5, 120, 100, NULL);
 
-
-
-
 CREATE TABLE Pokemon_Type(
-	Pokedex_number INTEGER,
-	Type_name CHARACTER VARYING(32),
+	pokedex_number INTEGER,
+	type_name CHARACTER VARYING(32),
 	PRIMARY KEY(pokedex_number),
 	FOREIGN KEY(pokedex_number), REFERENCES Pokemon(pokedex_number),
-	ON UPDATE CASCADE ON DELETE RESTRICT;
-	FOREIGN KEY(Type_name), REFERENCES Type(Type_name)
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(type_name), REFERENCES Type(type_name),
 	ON UPDATE CASCADE ON DELETE RESTRICT;
 );
 
-INSERT INTO Pokemon_Type (Pokedex_number, Type_name) VALUES
+INSERT INTO Pokemon_Type (pokedex_number, type_name) VALUES
 (1, 'Grass'),
 (2, 'Grass'),
 (3, 'Grass'),
