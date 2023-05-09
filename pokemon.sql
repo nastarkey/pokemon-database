@@ -1288,7 +1288,7 @@ CREATE TABLE Move(
     Type_name CHARACTER VARYING(32),
     Category CHARACTER VARYING(32),
     Power_points INTEGER,
-    Power INTEGER,   
+    Power INTEGER,
 	Accuracy INTEGER,
 	Effect CHARACTER VARYING(255),
 	PRIMARY KEY(move_name),
@@ -1750,4 +1750,4 @@ INSERT INTO Pokemon_Type (Pokedex_number, Type_name) VALUES
 (208, 'Ghost'),
 (209, 'Dark'),
 (210, 'Ghost'),
-(210, 'Dragon'),
+(210, 'Dragon');
