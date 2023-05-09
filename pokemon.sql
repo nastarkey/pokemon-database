@@ -1411,7 +1411,24 @@ INSERT INTO Move (Move_name, Type_name, Category, Power_points, Power, Accuracy,
 ('Ominous Wind', 'Ghost', 'Special', 5, 60, 100, NULL),
 ('Shadow Force', 'Ghost', 'Physical', 5, 120, 100, NULL);
 
-
+CREATE TABLE Learned_moves(
+	Pokedex_number INTEGER,
+	Move_name1 CHARACTER VARYING(32),
+	Move_name2 CHARACTER VARYING(32),
+	Move_name3 CHARACTER VARYING(32),
+	Move_name4 CHARACTER VARYING(32),
+	PRIMARY KEY(Pokedex_number),
+	FOREIGN KEY(Pokedex_number) REFERENCES Pokemon (Pokedex_number),
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(Move_name1) REFERENCES Move (Move_name1),
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(Move_name2) REFERENCES Move (Move_name2),
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(Move_name3) REFERENCES Move (Move_name3),
+	ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(Move_name4) REFERENCES Move (Move_name4),
+	ON UPDATE CASCADE ON DELETE RESTRICT;
+)
 
 
 CREATE TABLE Pokemon_Type(
