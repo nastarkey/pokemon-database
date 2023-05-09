@@ -236,7 +236,7 @@ INSERT INTO Pokemon (pokedex_number,pokemon_name,weight,height, ability) VALUES
 (210, 'Giratina', 750.0, 4.5, 'Pressure');
 
 CREATE TABLE Type(
-    type_name VARCHAR(32),
+    type_name CHARACTER VARYING(32),
     PRIMARY KEY(type_name),
     ON UPDATE NO ACTION ON DELETE NO ACTION;
 );
@@ -343,7 +343,7 @@ INSERT INTO Location (location_name, region_name) VALUES
 ('All Water Areas', 'Sinnoh');
 
 CREATE TABLE Region(
-    region_name VARCHAR(32),
+    region_name CHARACTER VARYING(32),
     generation INTEGER,
     PRIMARY KEY(region_name);
 );
@@ -481,8 +481,8 @@ INSERT INTO Evolves (pokedex_number1, pokedex_number2, condition) VALUES
 
 CREATE TABLE Pokemon_Location (
 	pokedex_number INTEGER,
-	location_name VARCHAR(255),
-	habitat VARCHAR(32),
+	location_name CHARACTER VARYING(255),
+	habitat CHARACTER VARYING(32),
 	PRIMARY KEY(pokedex_number),
 	FOREIGN KEY(pokedex_number), REFERENCES(Pokemon),
     ON UPDATE NO ACTION ON DELETE NO ACTION,
