@@ -2,14 +2,20 @@
 <link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
     <body>
-        <ul>
-            <li><a href = "index.html">Home</a></li>
-            <li><a href = "party.html">Party</a></li>
-            <li><a href = "pokemon.html">Pokemon</a></li>
-            <li><a href = "map.html">Map</a></li>
-            <li><a href = "login.php">Login</a></li>
-        </ul>
-
+        <div class="topnav">
+            <a href="index.html">Home</a>
+            <a class="active" href="party.html">Party</a>
+            <a href="pokemon.html">Pokemon</a>
+            <a href="map.html">Map</a>
+            <a href="login.php">Login</a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <h2>Party Pokemon</h2>
         <div class="party">
             <table>
                 <tr>
