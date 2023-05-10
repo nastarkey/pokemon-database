@@ -1,20 +1,25 @@
 <?php
-include 'insert-user.php';
+
 session_start(); // start (or resume) session
 
 // create database connection ($connection)
 $connection = new mysqli("localhost", "student", "CompSci364",
-                         "student");
+                         "pokemon");
+if ($connection->connect_errno) {
+  echo "Failed to connect to MySQL: " . $connection->connect_error;
+  exit();
+}
+
 
 $error = false;
 if (! isset($_SESSION["username"]) // already authenticated
     && isset($_POST["username"], $_POST["password"])) {
   // query database for account information
   $statement = $connection->prepare("SELECT password_hash ".
-                                    "FROM Users ".
+                                    "FROM Trainer ".
                                     "WHERE username = ?;");
   $statement->bind_param("s", $_POST["username"]);
-
+  echo "$password_hash";
   $statement->execute();
   $statement->bind_result($password_hash);
 
@@ -31,13 +36,14 @@ if (! isset($_SESSION["username"]) // already authenticated
 }
 
 if (isset($_SESSION["username"])) { // authenticated
-  $location = dirname($_SERVER["PHP_SELF"]);
-  if (isset($_REQUEST["redirect"])) {
-    $location = $_REQUEST["redirect"];
-  }
+  // $location = dirname($_SERVER["PHP_SELF"]);
+  // if (isset($_REQUEST["redirect"])) {
+  //   $location = $_REQUEST["redirect"];
+  // }
 
   // redirect to requested page
-  header("Location: ".$location);
+  header("Location: index.html");
+  exit();
 }
 
  ?>
@@ -63,6 +69,7 @@ if (isset($_SESSION["username"])) { // authenticated
 
       <input type="submit" value="Log in" />
     </form>
+    <p>Dont Have an Accout? <a href="signup.php">Click Here</a></p>
     </div>
   </body>
 </html>

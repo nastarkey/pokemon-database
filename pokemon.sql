@@ -4,9 +4,9 @@ CREATE DATABASE pokemon;
 USE pokemon;
 
 CREATE TABLE Trainer(
-    trainer_id INTEGER,
-    username CHARACTER VARYING(32) NOT NULL,
-    password CHARACTER VARYING(255) NOT NULL,
+    trainer_id INTEGER NOT NULL AUTO_INCREMENT,
+    username CHARACTER VARYING(32) NOT NULL UNIQUE,
+    password_hash CHARACTER VARYING(255) NOT NULL,
     email CHARACTER VARYING(32) NOT NULL,
     PRIMARY KEY(trainer_id)
 );
