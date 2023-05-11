@@ -54,18 +54,19 @@ $connection->close();
         </div>
         <form method="post">
             <label for="username">Username:</label>
-            <input type="text" required name="username" id="username">
+            <input required type="text" name="username" id="username">
             <br>
             <label for="email">Email</label>
             <input required pattern=".{1,50}" 
             type="email" name="email" id="email">
             <br>
-            <label for="email_confirm">Confirm Email</label>
-            <input required pattern=".{1,50}"
-            type="text" name="email_confirm" id="email" onblur="if(this.value!=forms.email.value) alert('Emails do not match!')">
-            <br>
             <label for="password">Password:</label>
-            <input type="password" required name="password" id="password">
+            <input required type="password" name="password" id="password"
+            onchange="if(this.checkValidity()) form.pass_confirm.pattern = this.value;">
+            <br>
+            <label for="pass_confirm">Confirm Password</label>
+            <input required type="password" name="pass_confirm" id="password_confirm"
+            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
             <br>
             <input type="submit" value="Add User">
         </form>
