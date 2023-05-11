@@ -14,14 +14,14 @@ if ($connection->connect_errno) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $connection->prepare("INSERT INTO Trainer(username, password_hash, email) VALUES (?, ?, ?)");
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $email = $_POST['email'];
     $stmt->bind_param("sss", $username, $password, $email);
     if (!$stmt->execute()) {
         echo "Error: " . $stmt->error;
     } else {
         echo "User added successfully.";  
-        header('Location: login.php');
+        header('Location: Login.php');
     }
 }
 

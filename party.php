@@ -1,13 +1,22 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
     <body>
         <div class="topnav">
-            <a href="index.html">Home</a>
-            <a class="active" href="party.html">Party</a>
-            <a href="pokemon.html">Pokemon</a>
-            <a href="map.html">Map</a>
-            <a href="login.php">Login</a>
+            <a href="index.php">Home</a>
+            <a class="active" href="party.php">Party</a>
+            <a href="pokemon.php">Pokemon</a>
+            <a href="map.php">Map</a>
+            <?php
+                $log = "Login";
+                if(isset($_SESSION["username"]))
+                   $log = "Logout";
+            ?>
+            <a href=<?php echo $log.".php"?>><?php echo $log?></a>
             <div class="search-container">
                 <form action="/action_page.php">
                     <input type="text" placeholder="Search.." name="search">

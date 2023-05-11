@@ -42,7 +42,7 @@ if (isset($_SESSION["username"])) { // authenticated
   // }
 
   // redirect to requested page
-  header("Location: index.html");
+  header("Location: index.php");
   exit();
 }
 
@@ -51,11 +51,11 @@ if (isset($_SESSION["username"])) { // authenticated
 <link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
   <body>
-    <?php
+    <p><?php
       if ($error) {
         echo "Invalid username or password.";
       }
-     ?>
+     ?></p>
      <div class="login">
     <form action="<?php echo $_SERVER["PHP_SELF"].
                              "?".$_SERVER["QUERY_STRING"]; ?>"
