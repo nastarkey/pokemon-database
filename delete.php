@@ -32,7 +32,7 @@ window.onclick = function(event) {
 
 if($_GET['username']) {
 
-    mysql_connect("host","username","pword") or die(mysql_error()); 
+    mysql_connect("trainerid","username","password") or die(mysql_error()); 
     mysql_select_db("pokemon") or die(mysql_error()); 
 
     $username = $_GET['username'];
