@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // create database connection ($connection)
 $connection = new mysqli("localhost", "student", "CompSci364",
@@ -14,15 +15,40 @@ $statement1 = $connection->prepare("SELECT trainer_id ".
                                     "FROM Trainer ".
                                     "WHERE username = ?;");
 $statement1->bind_param("s", $_SESSION["username"]);
-$statement1->execute();
-$statement1->bind_result($trainer_id);
+
+if (!$statement1->execute()) {
+    echo "Error executing statement: " . $statement1->error;
+    exit();
+}
+if($statement1->get_result() !== NULL)
+    $statement1->bind_result($trainer_id);
+
+$id = (int)$trainer_id;
 
 $statement = $connection->prepare("SELECT pokemon1, pokemon2, pokemon3, pokemon4, pokemon5, pokemon6 ".
                                     "FROM Party ".
                                     "WHERE trainer_id = ?;");
-$statement->bind_param("s", $trainer_id);
-$statement->execute();
-$statement->bind_result($pokemon1, $pokemon2, $pokemon3, $pokemon4, $pokemon5, $pokemon6)
+$statement->bind_param("i", $id);
+
+if (!$statement->execute()) {
+    echo "Error executing statement: " . $statement->error;
+    exit();
+}
+
+$name1 = "question_mark";
+$name2 = "question_mark";
+$name3 = "question_mark";
+$name4 = "question_mark";
+$name5 = "question_mark";
+$name6 = "question_mark";
+if($statement->get_result() !== NULL)
+    $statement->bind_result($pokemon1, $pokemon2, $pokemon3, $pokemon4, $pokemon5, $pokemon6);
+    if(isset())
+
+
+$statement->close();
+$statement1->close();
+$connection->close();
 
 ?>
 
@@ -53,24 +79,24 @@ $statement->bind_result($pokemon1, $pokemon2, $pokemon3, $pokemon4, $pokemon5, $
             <table>
                 <tr>
                     <td>
-                        <img src="resources/question_mark.png">
+                        <img src=<?php echo "resources/pokemon_pics/".$name1.".png"?>>
                     </td>
                     <td>
-                        <img src="resources/question_mark.png">
+                        <img src=<?php echo "resources/pokemon_pics/".$name1.".png"?>>
                     </td>
                     <td>
-                        <img src="resources/question_mark.png">
+                        <img src=<?php echo "resources/pokemon_pics/".$name1.".png"?>>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="resources/question_mark.png">
+                        <img src=<?php echo "resources/pokemon_pics/".$name1.".png"?>>
                     </td>
                     <td>
-                        <img src="resources/question_mark.png">
+                        <img src=<?php echo "resources/pokemon_pics/".$name1.".png"?>>
                     </td>
                     <td>
-                        <img src="resources/question_mark.png">
+                        <img src=<?php echo "resources/pokemon_pics/".$name1.".png"?>>
                     </td>
                 </tr>
             </table>
