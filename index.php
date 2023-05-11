@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 ?>
 
 
@@ -17,6 +19,7 @@ session_start();
                 if(isset($_SESSION["username"]))
                    $log = "Logout";
             ?>
+
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
             <div class="search-container">
                 <form action="/pokemon_client.php">

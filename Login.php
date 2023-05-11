@@ -19,7 +19,6 @@ if (! isset($_SESSION["username"]) // already authenticated
                                     "FROM Trainer ".
                                     "WHERE username = ?;");
   $statement->bind_param("s", $_POST["username"]);
-  echo "$password_hash";
   $statement->execute();
   $statement->bind_result($password_hash);
 

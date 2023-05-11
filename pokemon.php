@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+
+
+
+
 ?>
 
 
@@ -25,8 +30,11 @@ session_start();
             </form>
         </div>
     </div>
+
+
+
         <h2>Search Pokemon</h2>
-        <form>
+        <form method="get">
             <label for="PokemonNumber">Pokemon Number</label><br>
             <input type="number" id="PokemonNumber" name="PokemonNumber"
                    min="1" max="210" size="3" pattern="[0-9]{1,3}"><br>
