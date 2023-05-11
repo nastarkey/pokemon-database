@@ -17,7 +17,17 @@ session_start();
         <button type="button" class="cancelbtn">Cancel</button>
         <button type="button" class="deletebtn">Delete</button>
       </div>
-    </div>
+      <?php 
+
+        if(isset($_GET['username'])) {
+          $user=$GET['username'];
+          $delete=mysqli__query($connection,"DELETE FROM 'Trainer' WHERE 'username'='$user'");
+          echo "Trainer Deleted"; 
+          header("location:index.php");
+          die();
+        }
+      ?>
+      </div>
   </form>
 </div>  
 
@@ -32,18 +42,3 @@ window.onclick = function(event) {
 }
 </script>
 
-<?php 
-
-if($_GET['username']) {
-
-    mysql_connect("trainerid","username","password") or die(mysql_error()); 
-    mysql_select_db("pokemon") or die(mysql_error()); 
-
-    $username = $_GET['username'];
-    $result=mysql_query("DELETE FROM Trainer WHERE username='$username'") or die(mysql_error()); 
-
-    echo "Trainer Deleted"; 
-
-}
-
-?>
