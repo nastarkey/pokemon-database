@@ -29,6 +29,9 @@ $connection->close();
 
 ?>
 
+<link rel = "stylesheet" href "pdb.css"></link>
+
+
 <form method="post">
     <label for="username">Username:</label>
     <input type="text" name="username" id="username">
@@ -41,3 +44,4 @@ $connection->close();
     <br>
     <input type="submit" value="Add User">
 </form>
+
