@@ -54,13 +54,18 @@ $connection->close();
         </div>
         <form method="post">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
+            <input type="text" required name="username" id="username">
             <br>
             <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+            <input pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$" 
+            type="email" required name="email" id="email">
+            <br>
+            <label for="email_confirm">Confirm Email</label>
+            <input pattern="^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$"
+            type="text" required name="email_confirm" id="email" onblur="if(this.value!=forms.email.value) alert('Emails do not match!')">
             <br>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+            <input type="password" required name="password" id="password">
             <br>
             <input type="submit" value="Add User">
         </form>
