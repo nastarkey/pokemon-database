@@ -30,20 +30,39 @@ $connection->close();
 ?>
 
 
-<DOCTYPE HTML>
-<link rel = "stylesheet" href="pdb.css"></link>
+<!DOCTYPE html>
+<link  rel = "stylesheet" href = "pdb.css"></link>
 <html>
-
-    <form method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username">
-        <br>
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password">
-        <br>
-        <input type="submit" value="Add User">
-    </form>
+    <body>
+        <div class="topnav">
+            <a class="active" href="index.php">Home</a>
+            <a href="party.php">Party</a>
+            <a href="pokemon.php">Pokemon</a>
+            <a href="map.php">Map</a>
+            <?php
+                $log = "Login";
+                if(isset($_SESSION["username"]))
+                   $log = "Logout";
+            ?>
+            <a href=<?php echo $log.".php"?>><?php echo $log?></a>
+            <div class="search-container">
+                <form action="/pokemon_client.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <form method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <br>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <br>
+            <input type="submit" value="Add User">
+        </form>
+    </body>
 </html>
