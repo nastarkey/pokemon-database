@@ -20,12 +20,6 @@ session_start();
             ?>
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
             <a href=<?php echo $del.".php"?>><?php echo $del. " Account"?></a>
-            <div class="search-container">
-                <form action="/pokemon_client.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
         </div>
         <div class="aboutText">
             <p>
