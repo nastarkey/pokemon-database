@@ -1,9 +1,6 @@
 <?php
 session_start();
-
-
 ?>
-
 
 <!DOCTYPE html>
 <link  rel = "stylesheet" href = "pdb.css"></link>
@@ -16,11 +13,13 @@ session_start();
             <a href="map.php">Map</a>
             <?php
                 $log = "Login";
+                $del = NULL;
                 if(isset($_SESSION["username"]))
-                   $log = "Logout";
+                    $log = "Logout";
+                    $del = "Delete";
             ?>
-
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
+            <a href=<?php echo $del.".php"?>><?php echo $del. " Account"?></a>
             <div class="search-container">
                 <form action="/pokemon_client.php">
                     <input type="text" placeholder="Search.." name="search">

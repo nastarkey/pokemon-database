@@ -35,7 +35,7 @@ $connection->close();
 <html>
     <body>
         <div class="topnav">
-            <a class="active" href="index.php">Home</a>
+            <a href="index.php">Home</a>
             <a href="party.php">Party</a>
             <a href="pokemon.php">Pokemon</a>
             <a href="map.php">Map</a>
