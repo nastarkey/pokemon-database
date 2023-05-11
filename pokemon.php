@@ -23,18 +23,12 @@ session_start();
                    $log = "Logout";
             ?>
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit">Submit</button>
-            </form>
-        </div>
     </div>
 
 
 
         <h2>Search Pokemon</h2>
-        <form method="get">
+        <form method="get" action="pokemon_client.php">
             <label for="PokemonNumber">Pokemon Number</label><br>
             <input type="number" id="PokemonNumber" name="PokemonNumber"
                    min="1" max="210" size="3" pattern="[0-9]{1,3}"><br>

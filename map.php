@@ -17,12 +17,6 @@ session_start();
                    $log = "Logout";
             ?>
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit">Submit</button>
-            </form>
-        </div>
     </div>
         <h2>Map of Sinnoh</h2>
         <div class="mapImage">
