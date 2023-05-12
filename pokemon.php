@@ -31,6 +31,7 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
     $type1 = NULL;
     if($result !== NULL){
         while($row = $result->fetch_assoc()){
+              $pokedex = $row['pokedex_number'];
             $pokemon_name = $row['pokemon_name'];
             $weight = $row['weight'];
             $height = $row['height'];
@@ -41,7 +42,17 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
                 $type1 = $row['Type_name'];
             }
         }
-    }
+        
+}
+echo "<table>";
+        echo "<tr>";
+        echo "<td>"."<img src=\"resources/pokemon_pics/".strtolower($pokemon_name).".png\">";
+       echo "<p>". $pokemon_name . "</p>";
+       echo "<p>Weight: ". $weight . " Height: " . $height . "</p>";
+       echo "<p>Ability: " . $ability . "</p>";
+       echo "<form method=\"GET\" action=\"pokemon_client.php\">";
+       echo "<button name=\"pokemon\" type=\"submit\" value=\"".$pokedex."\">Add to team</button></td>";
+       echo "</tr></table>";
 } else {
        echo "<table>";
        $query = "SELECT * FROM Pokemon INNER JOIN Pokemon_Type USING(pokedex_number);";
@@ -59,7 +70,7 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
                      echo "<p>Weight: ". $weight . " Height: " . $height . "</p>";
                      echo "<p>Ability: " . $ability . "</p>";
                      echo "<form method=\"GET\" action=\"pokemon_client.php\">";
-                     echo "<button name=\"".$pokemon_name."\" type=\"submit\" value=\"".$row['pokedex_number']."\">Add to team</button></td>";
+                     echo "<button name=\"pokemon\" type=\"submit\" value=\"".$pokedex."\">Add to team</button></td>";
                      // echo "<input"
                      $col++;
                      if($col > 3){
@@ -67,6 +78,7 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
                             echo "</tr>";
                      }
               }
+               $pokedex = $row['pokedex_number'];
                $pokemon_name = $row['pokemon_name'];
                $weight = $row['weight'];
                $height = $row['height'];
@@ -82,7 +94,7 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
               echo "<p>Weight: ". $weight . " Height: " . $height . "</p>";
               echo "<p>Ability: " . $ability . "</p>";
               echo "<form method=\"GET\" action=\"pokemon_client.php\">";
-              echo "<button name=\"".$pokemon_name."\" type=\"submit\" value=\"".$row['pokedex_number']."\">Add to team</button></td>";
+              echo "<button name=\"pokemon\" type=\"submit\" value=\"".$pokedex."\">Add to team</button></td>";
        }   
 }
 
