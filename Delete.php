@@ -17,18 +17,28 @@ session_start();
         <button type="button" class="cancelbtn">Cancel</button>
         <button type="button" class="deletebtn">Delete</button>
       </div>
-    </div>
+      <?php 
+
+        if(isset($_GET['username'])) {
+          $user=$GET['username'];
+          $delete=mysqli__query($connection,"DELETE FROM 'Trainer' WHERE 'username'='$user'");
+          echo "Trainer Deleted"; 
+          header("location:index.php");
+          die();
+        }
+      ?>
+      </div>
   </form>
 </div>  
 
 <script>
-// Get the modal
+
 var modal = document.getElementById('id01');
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
 </script>
+
