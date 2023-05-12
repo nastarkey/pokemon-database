@@ -19,7 +19,8 @@ session_start();
                     $del = "Delete";
             ?>
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
-            <a href=<?php echo $del.".php"?>><?php echo $del. " Account"?></a>
+            <a href=<?php echo $del.".php"?>><?php if(isset($_SESSION["username"]))
+                                                        echo $del." Account"?></a>
         </div>
         <div class="aboutText">
             <p>
