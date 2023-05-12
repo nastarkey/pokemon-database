@@ -55,6 +55,7 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
                             echo "<tr>";
                      }
                      echo "<td>"."<img src=\"resources/pokemon_pics/".strtolower($pokemon_name).".png\">";
+                     echo "<p>". $pokemon_name . "</p>";
                      echo "<p>Weight: ". $weight . " Height: " . $height . "</p>";
                      echo "<p>Ability: " . $ability . "</p>";
                      echo "<form method=\"GET\" action=\"pokemon_client.php\">";
@@ -77,6 +78,7 @@ if(!$isEmpty and !empty($_GET["PokemonNumber"])){
                }
            }
            echo "<td>"."<img src=\"resources/pokemon_pics/".strtolower($pokemon_name).".png\">";
+              echo "<p>". $pokemon_name . "</p>";
               echo "<p>Weight: ". $weight . " Height: " . $height . "</p>";
               echo "<p>Ability: " . $ability . "</p>";
               echo "<form method=\"GET\" action=\"pokemon_client.php\">";
