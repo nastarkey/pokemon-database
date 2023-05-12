@@ -2,13 +2,13 @@
 session_start();
 ?>
 
-<button onclick="document.getElementById('id01').style.display='block'">Open Modal</button>
+<button onclick="document.getElementById('id01').style.display='block'">Click here to delete account</button>
 
 <link  rel = "stylesheet" href = "pdb.css"></link>
 
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/action_page.php">
+  <form class="modal-content" action="Delete.php">
     <div class="container">
       <h1>Delete Account</h1>
       <p><?php echo $_SESSION["username"]?> Are you sure you want to delete your account?</p>
@@ -18,7 +18,6 @@ session_start();
         <button type="button" class="deletebtn">Delete</button>
       </div>
       <?php 
-
         if(isset($_GET['username'])) {
           $user=$GET['username'];
           $delete=mysqli__query($connection,"DELETE FROM 'Trainer' WHERE 'username'='$user'");

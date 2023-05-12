@@ -45,12 +45,6 @@ $connection->close();
                    $log = "Logout";
             ?>
             <a href=<?php echo $log.".php"?>><?php echo $log?></a>
-            <div class="search-container">
-                <form action="/pokemon_client.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
         </div>
         <form method="post">
             <label for="username">Username:</label>
